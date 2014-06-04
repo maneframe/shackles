@@ -88,6 +88,7 @@ module Shackles
                 end
         pools.each_pair do |model, pool|
           model = model.constantize if Rails.version >= '4'
+          new_handler.remove_connection(model.constantize)
           new_handler.establish_connection(model, pool.spec)
         end
       end
